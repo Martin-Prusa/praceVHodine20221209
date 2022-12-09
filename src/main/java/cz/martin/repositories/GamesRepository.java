@@ -2,6 +2,7 @@ package cz.martin.repositories;
 
 import cz.martin.models.Eteam;
 import cz.martin.models.Game;
+import cz.martin.models.StadiumGoals;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.sql.*;
@@ -57,6 +58,29 @@ public class GamesRepository {
 
             while (resultSet.next()) {
                 list.add(resultSet.getString(1));
+            }
+            connection.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+    public List<StadiumGoals> getGoals() {
+        ArrayList<StadiumGoals> list = new ArrayList<>();
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost/euro?user=root&password=password");
+            PreparedStatement statement = connection.prepareStatement("""
+                SELECT DISTINCT GM.stadium, COUNT(GL.matchid)
+                FROM Goal AS GL JOIN Game AS GM ON (GM.id = GL.matchid)
+                GROUP BY GM.stadium
+            """);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                list.add(new StadiumGoals(resultSet.getString(1), resultSet.getInt(2)));
             }
             connection.close();
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="fragments/template.xhtml">
+   <ui:define name="content">
+      <h1>Stadions</h1>
+      <table class="table">
+         <thead>
+         <tr>
+            <th scope="col">#</th>
+            <th scope="col">Stadion</th>
+            <th scope="col">Goals</th>
+         </tr>
+         </thead>
+         <tbody>
+         <ui:repeat value="#{stadium.goals}" var="sg" varStatus="status">
+            <tr>
+               <th scope="row">#{status.index + 1}</th>
+               <td>#{sg.stadium}</td>
+               <td>#{sg.goals}</td>
+            </tr>
+         </ui:repeat>
+         </tbody>
+      </table>
+   </ui:define>
+</ui:composition>
+</html>

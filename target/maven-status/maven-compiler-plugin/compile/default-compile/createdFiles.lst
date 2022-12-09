@@ -3,6 +3,8 @@ cz/martin/beans/PlayersBean.class
 cz/martin/beans/TeamDetailBean.class
 cz/martin/models/Goal.class
 cz/martin/models/Eteam.class
+cz/martin/models/StadiumGoals.class
+cz/martin/beans/StadiumGoalsBean.class
 cz/martin/beans/TeamsBean.class
 cz/martin/repositories/GamesRepository.class
 cz/martin/services/GamesService.class
