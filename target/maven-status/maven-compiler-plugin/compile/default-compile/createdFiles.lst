@@ -1,0 +1,9 @@
+cz/martin/repositories/TeamsRepository.class
+cz/martin/beans/TeamDetailBean.class
+cz/martin/models/Goal.class
+cz/martin/models/Eteam.class
+cz/martin/beans/TeamsBean.class
+cz/martin/repositories/GamesRepository.class
+cz/martin/services/GamesService.class
+cz/martin/services/TeamsService.class
+cz/martin/models/Game.class
