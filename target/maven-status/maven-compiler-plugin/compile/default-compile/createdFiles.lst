@@ -1,4 +1,5 @@
 cz/martin/repositories/TeamsRepository.class
+cz/martin/beans/PlayersBean.class
 cz/martin/beans/TeamDetailBean.class
 cz/martin/models/Goal.class
 cz/martin/models/Eteam.class

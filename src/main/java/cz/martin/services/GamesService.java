@@ -15,4 +15,8 @@ public class GamesService {
     public List<Game> getGamesForTeam(String teamID) {
         return gamesRepository.getGamesForTeam(teamID);
     }
+
+    public List<String> getPlayersScored(String team) {
+        return gamesRepository.getPlayersScored(team);
+    }
 }

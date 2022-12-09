@@ -38,4 +38,31 @@ public class GamesRepository {
         }
         return games;
     }
+
+    public List<String> getPlayersScored(String team) {
+        ArrayList<String> list = new ArrayList<>();
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost/euro?user=root&password=password");
+            PreparedStatement statement = connection.prepareStatement("""
+                SELECT DISTINCT GL.player
+                FROM Goal AS GL JOIN Game AS GM ON (GM.id = GL.matchid)
+                WHERE (GM.team1 LIKE ? OR GM.team2 LIKE ?) AND !(GL.teamid LIKE ?)
+            """);
+
+            statement.setString(1, team);
+            statement.setString(2, team);
+            statement.setString(3, team);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                list.add(resultSet.getString(1));
+            }
+            connection.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
 }

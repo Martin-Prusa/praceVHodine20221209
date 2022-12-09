@@ -19,4 +19,8 @@ public class TeamsService {
     public Eteam getTeamByID(String id) {
         return teamsRepository.getTeamByID(id);
     }
+
+    public List<String> getTeamsID() {
+        return teamsRepository.getAllTeams();
+    }
 }

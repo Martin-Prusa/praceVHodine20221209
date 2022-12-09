@@ -57,4 +57,27 @@ public class TeamsRepository {
         }
         return team;
     }
+
+    public List<String> getAllTeams() {
+        ArrayList<String> teams = new ArrayList<>();
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost/euro?user=root&password=password");
+            PreparedStatement statement = connection.prepareStatement("""
+                SELECT DISTINCT T.id
+                FROM Eteam AS T
+            """);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                teams.add(resultSet.getString(1));
+            }
+
+            connection.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return teams;
+    }
 }
